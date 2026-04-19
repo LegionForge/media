@@ -1,0 +1,23 @@
+/* LegionForge Brand Tokens
+   Consume via: https://assets.legionforge.org/current/css/brand.css */
+
+:root {
+  /* Brand colors */
+  --lf-green:       #339933;
+  --lf-cyan:        #33ccff;
+  --lf-black:       #000000;
+  --lf-white:       #ffffff;
+
+  /* Semantic aliases */
+  --lf-color-primary:    var(--lf-green);
+  --lf-color-accent:     var(--lf-cyan);
+  --lf-color-on-dark:    var(--lf-white);
+  --lf-color-on-light:   var(--lf-black);
+
+  /* Logo asset URLs */
+  --lf-logo-color:        url('https://assets.legionforge.org/current/logos/legionforge-logo-color.svg');
+  --lf-logo-dark-bg:      url('https://assets.legionforge.org/current/logos/legionforge-logo-dark.png');
+  --lf-logo-light-bg:     url('https://assets.legionforge.org/current/logos/legionforge-logo-light.png');
+  --lf-logo-transparent:  url('https://assets.legionforge.org/current/logos/legionforge-logo-transparent.png');
+  --lf-favicon:           url('https://assets.legionforge.org/current/icons/favicon.svg');
+}

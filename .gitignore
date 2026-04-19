@@ -1,0 +1,10 @@
+.claude/
+.DS_Store
+Thumbs.db
+*.tmp
+*.bak
+*.psd
+*.ai
+*.sketch
+*.xcf
+node_modules/

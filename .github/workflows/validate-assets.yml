@@ -1,0 +1,74 @@
+name: Validate Assets
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Required directories exist
+        run: |
+          for dir in dist/current/logos dist/current/icons dist/current/css dist/v1/logos; do
+            if [ ! -d "$dir" ]; then
+              echo "ERROR: missing required directory: $dir"
+              exit 1
+            fi
+          done
+
+      - name: Every version directory has a manifest.json
+        run: |
+          for dir in dist/*/; do
+            if [ ! -f "${dir}manifest.json" ]; then
+              echo "ERROR: missing manifest.json in $dir"
+              exit 1
+            fi
+          done
+
+      - name: Validate manifest.json files are valid JSON
+        run: |
+          for manifest in dist/*/manifest.json; do
+            if ! python3 -m json.tool "$manifest" > /dev/null; then
+              echo "ERROR: invalid JSON in $manifest"
+              exit 1
+            fi
+          done
+
+      - name: Canonical logo files present in dist/current/logos
+        run: |
+          required=(
+            "dist/current/logos/legionforge-logo-color.svg"
+            "dist/current/logos/legionforge-logo-dark.png"
+            "dist/current/logos/legionforge-logo-light.png"
+            "dist/current/logos/legionforge-logo-transparent.png"
+          )
+          for f in "${required[@]}"; do
+            if [ ! -f "$f" ]; then
+              echo "ERROR: missing canonical asset: $f"
+              exit 1
+            fi
+          done
+
+      - name: Check for duplicate filenames within each dist version
+        run: |
+          for dir in dist/*/; do
+            dupes=$(find "$dir" -type f -printf '%f\n' | sort | uniq -d)
+            if [ -n "$dupes" ]; then
+              echo "ERROR: duplicate filenames in $dir:"
+              echo "$dupes"
+              exit 1
+            fi
+          done
+
+      - name: Web asset size check (logos must be under 1MB)
+        run: |
+          find dist/ -name "*.svg" -o -name "*.png" -o -name "*.jpg" | while read f; do
+            size=$(stat -c%s "$f")
+            if [ "$size" -gt 1048576 ]; then
+              echo "WARNING: $f is $(( size / 1024 ))KB — consider optimizing"
+            fi
+          done
