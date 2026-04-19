@@ -1,0 +1,23 @@
+{
+  "name": "LegionForge brand assets",
+  "version": "v1",
+  "releaseTag": "brand-v1.0.0",
+  "updatedAt": "2026-04-19T00:00:00Z",
+  "baseUrl": "https://assets.legionforge.org/v1",
+  "canonical": {
+    "logoColor": "/v1/logos/legionforge-logo-color.svg",
+    "logoDarkBg": "/v1/logos/legionforge-logo-dark.png",
+    "logoLightBg": "/v1/logos/legionforge-logo-light.png",
+    "logoTransparent": "/v1/logos/legionforge-logo-transparent.png",
+    "faviconSvg": "/v1/icons/favicon.svg",
+    "faviconIco": "/v1/icons/favicon.ico",
+    "brandCss": "/v1/css/brand.css"
+  },
+  "colors": {
+    "green": "#339933",
+    "cyan": "#33ccff",
+    "black": "#000000",
+    "white": "#ffffff"
+  },
+  "deprecated": []
+}

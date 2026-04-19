@@ -1,0 +1,5 @@
+* @LegionForge
+/src/logos/ @LegionForge
+/dist/ @LegionForge
+/docs/ @LegionForge
+/.github/workflows/ @LegionForge
