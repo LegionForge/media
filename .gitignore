@@ -1,4 +1,5 @@
 .claude/
+src/wip/
 .DS_Store
 Thumbs.db
 *.tmp
